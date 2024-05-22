@@ -8,5 +8,7 @@
     - requirements.txt
 4. Generamos un nuevo repositorio en GitHub
 5. Comiteamos los cambios y hacemos git push al repositorio de github
+6. En Render conectamos con el repositorio de github
+7. Desplegamos la aplicación en Render
 
 
