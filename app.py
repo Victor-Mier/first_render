@@ -1,20 +1,24 @@
+"""Importar librerías"""
+import time
 import pandas as pd
 import scipy.stats
 import streamlit as st
-import time
 
 # estas son variables de estado que se conservan cuando Streamlit vuelve a ejecutar este script
 if 'experiment_no' not in st.session_state:
     st.session_state['experiment_no'] = 0
 
 if 'df_experiment_results' not in st.session_state:
-    st.session_state['df_experiment_results'] = pd.DataFrame(columns=['No.', 'Iteraciones', 'Media'])
+    st.session_state['df_experiment_results'] = \
+        pd.DataFrame(columns=['No.', 'Iteraciones', 'Media'])
 
+# Encabezado y gráfica de experimentos
 st.header('Lanzar una moneda')
 
 chart = st.line_chart([0.5])
 
 def toss_coin(n):
+    """Prueba de Bernoulli para simular el lanzamiento de una moneda n veces"""
 
     trial_outcomes = scipy.stats.bernoulli.rvs(p=0.5, size=n)
 
@@ -47,6 +51,7 @@ if start_button:
                      columns=['No.', 'Iteraciones', 'Media'])
         ],
         axis=0)
-    st.session_state['df_experiment_results'] = st.session_state['df_experiment_results'].reset_index(drop=True)
+    st.session_state['df_experiment_results'] = \
+        st.session_state['df_experiment_results'].reset_index(drop=True)
 
 st.write(st.session_state['df_experiment_results'])
